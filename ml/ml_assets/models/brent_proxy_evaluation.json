@@ -1,0 +1,26 @@
+{
+  "status": "prototype_only",
+  "target": "Brent crude oil spot price proxy, USD per barrel",
+  "data_source_file": "data/brent-daily.csv",
+  "data_start": "1987-05-20",
+  "data_as_of": "2026-09-22",
+  "observations": 9092,
+  "horizon_observations": 5,
+  "training_rows": 7221,
+  "holdout_rows": 1806,
+  "holdout": {
+    "candidate_rmse_usd_per_barrel": 5.3702,
+    "persistence_rmse_usd_per_barrel": 5.4479,
+    "candidate_mae_usd_per_barrel": 3.6297,
+    "candidate_beats_persistence": true
+  },
+  "model_file": "models/brent_proxy_model.joblib",
+  "trained_at_utc": "2026-09-28T17:31:27.973427+00:00",
+  "recommended_for_decision_use": false,
+  "limitations": [
+    "Brent crude is a broad fuel-cost proxy, not marine bunker fuel.",
+    "This model does not forecast an India-route freight rate or charter quote.",
+    "Holdout improvement over persistence is small and does not guarantee future accuracy.",
+    "The input CSV ends at data_as_of; no live EIA refresh is configured."
+  ]
+}

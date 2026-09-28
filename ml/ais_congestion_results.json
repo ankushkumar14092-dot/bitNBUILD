@@ -1,0 +1,61 @@
+{
+  "source": "NOAA MarineCadastre AIS 2024 + NOAA NDBC weather stations PRJC1 and 46253",
+  "weather_features": [
+    "wind_speed_m_s",
+    "wind_gust_m_s",
+    "wave_height_m",
+    "dominant_wave_period_s",
+    "average_wave_period_s",
+    "water_temp_c"
+  ],
+  "weather_station_notes": "Wind/gust from Los Angeles Pier J; waves/temperature from nearby San Pedro South buoy 46253.",
+  "sample_dates": [
+    "ais-2024-01-01.csv.zst",
+    "ais-2024-01-02.csv.zst",
+    "ais-2024-01-03.csv.zst",
+    "ais-2024-01-04.csv.zst",
+    "ais-2024-01-05.csv.zst",
+    "ais-2024-01-06.csv.zst",
+    "ais-2024-01-07.csv.zst"
+  ],
+  "demo_area": "San Pedro Bay / Los Angeles, United States",
+  "target": "rule-based AIS congestion index one hour ahead (0-100)",
+  "target_is_observed_demurrage": false,
+  "training_rows": 114,
+  "test_rows": 29,
+  "selected_model": "Linear Regression",
+  "beats_persistence_baseline": false,
+  "metrics": [
+    {
+      "model": "Persistence baseline",
+      "MAE": 0.67941729138506,
+      "RMSE": 0.8131915840057422,
+      "R2": 0.6077020634923355
+    },
+    {
+      "model": "Linear Regression",
+      "MAE": 0.6847311620736203,
+      "RMSE": 0.8542703769583465,
+      "R2": 0.5670667249458912
+    },
+    {
+      "model": "Random Forest",
+      "MAE": 0.7050209589052043,
+      "RMSE": 0.8827696051475543,
+      "R2": 0.5376988050677696
+    },
+    {
+      "model": "LightGBM",
+      "MAE": 0.8411150810207695,
+      "RMSE": 1.0375729762725454,
+      "R2": 0.3613431464814486
+    },
+    {
+      "model": "XGBoost",
+      "MAE": 0.9525917928195665,
+      "RMSE": 1.1375994815288861,
+      "R2": 0.23226905874624304
+    }
+  ],
+  "limitation": "Small one-week U.S. demo sample with nearby weather observations and a rule-based proxy target; not an India-port model or demurrage predictor."
+}

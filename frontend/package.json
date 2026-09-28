@@ -1,0 +1,26 @@
+{
+  "name": "cargo-pilot",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "dev:api": "backend/.venv/bin/uvicorn main:app --port 8000 --app-dir backend",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "playwright test",
+    "test:engine": "node --test tests/engine.test.js"
+  },
+  "dependencies": {
+    "lucide-react": "^1.48.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.3.1"
+  },
+  "description": "Cargo-Pilot \u2014 intelligent freight forecasting and dry-bulk chartering decision support."
+}

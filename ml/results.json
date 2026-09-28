@@ -1,0 +1,48 @@
+{
+  "status": "prototype_only",
+  "target": "global Baltic Dry Index, five observations ahead",
+  "data_sources": {
+    "bdi": {
+      "file": "data/raw/bdi_historical_1985_2009.csv",
+      "start": "1985-01-04",
+      "end": "2009-03-13",
+      "source": "Community GitHub mirror; redistribution terms unverified"
+    },
+    "brent": {
+      "file": "data/raw/brent-daily.csv",
+      "start": "1987-05-20",
+      "end": "2026-09-22",
+      "source": "EIA Brent crude oil; proxy, not marine bunker fuel"
+    },
+    "rainfall": {
+      "file": "data/raw/daily-rainfall-at-state-level.csv",
+      "start": "2009-01-01",
+      "end": "2023-12-26",
+      "source": "India Data Portal / India-WRIS; Open Data Commons Attribution",
+      "role": "loaded and inspected; not used to train due short overlap"
+    }
+  },
+  "training_rows": 4348,
+  "test_rows": 1088,
+  "model_metrics": {
+    "MAE": 1312.768718719959,
+    "RMSE": 2108.3488410513282,
+    "MAPE percent": 22.3294424078207
+  },
+  "persistence_baseline_metrics": {
+    "MAE": 251.27205882352942,
+    "RMSE": 381.34238273190545,
+    "MAPE percent": 5.931388594667348
+  },
+  "candidate_beats_baseline": false,
+  "recommended_for_decision_use": false,
+  "model_file": "models/bdi_proxy_model.joblib",
+  "trained_at_utc": "2026-09-27T09:43:45.643390+00:00",
+  "limitations": [
+    "The BDI is a global benchmark, not an East Coast India route quote.",
+    "The available BDI file ends in 2009.",
+    "Brent is crude oil, not marine bunker fuel.",
+    "Rainfall is state-level and its overlap with this BDI file is too short for training.",
+    "Use licensed India-route fixture/assessment data before decision use."
+  ]
+}
