@@ -13,18 +13,37 @@ from calculations import (calculate_stock_cover , calculate_projected_stock, cal
  calculate_freight_cost, calculate_insurance_cost, calculate_port_charges, calculate_expected_demurrage, calculate_landed_cost,
  calculate_inventory_status, generate_vessel_options, calculate_port_risk, calculate_confidence, generate_decision_summary)
 
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app = FastAPI(title="CARGO-PILOT API")
+
+# Configure CORS for multi-domain deployments (e.g. Vercel, Netlify, localhost)
+cors_origins_env = os.getenv("ALLOWED_ORIGINS", "*")
+if cors_origins_env.strip() == "*":
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    allowed_origins = [o.strip() for o in cors_origins_env.split(",") if o.strip()]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins,
+        allow_origin_regex=os.getenv("ALLOWED_ORIGIN_REGEX", r"https://.*\.vercel\.app|https://.*\.netlify\.app"),
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 @app.get("/")
 def home():
     return {"message": "FreightIQ backend is running", "status": "ok"}
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 
 @app.get("/ml/market-proxy")
@@ -96,7 +115,9 @@ def analyze_scenario(scenario: ScenarioInput):
         scenario.destination_port,
         insurance_cost,
         port_charges,
-        expected_demurrage
+        expected_demurrage,
+        scenario.freight_rate_per_tonne,
+        scenario.expected_delay_days
     )
 
     for option in vessel_options:

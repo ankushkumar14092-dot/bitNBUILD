@@ -1,7 +1,12 @@
 import {dateLabelYear, portData} from './data';
 
+// Use VITE_API_URL environment variable if set (for production split deployment on Vercel/Netlify),
+// or fall back to '/api' which works with Vite proxy during local development or reverse proxying.
+const API_BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '');
+
 async function request(path, options) {
-  const response = await fetch(`/api${path}`, options);
+  const url = `${API_BASE}${path}`;
+  const response = await fetch(url, options);
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
     const detail = body.detail || `API request failed (${response.status})`;

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {analyze,validate,initialForm,forecastData} from '../src/data.js';
+import {analyze,validate,initialForm,forecastData} from '../../frontend/src/data.js';
 
 test('default charter model has a feasible Panamax candidate and reconciled cost',()=>{
  const options=analyze(initialForm),a=options.find(o=>o.isRecommended);

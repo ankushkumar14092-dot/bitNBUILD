@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "playwright test",
-    "test:engine": "node --test tests/engine.test.js"
+    "test:engine": "node --test ../tests/frontend/engine.test.js"
   },
   "dependencies": {
     "lucide-react": "^1.48.0",

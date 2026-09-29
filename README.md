@@ -56,11 +56,20 @@ CARGO-PILOT/
 ├── backend/                   # FastAPI server & decision logic
 ├── ml/                        # Jupyter notebooks, trained models, data
 ├── tests/                     # Separated UI (Playwright) and API (Pytest) tests
+├── DEPLOYMENT.md              # Production deployment guide (Vercel + Render)
 ├── architecture.md            # Detailed end-to-end architecture documentation
 └── documentation.md           # Project status, constraints, and data info
 ```
 
 > **Important Note:** This is a decision-support **prototype**. ML models (like the Brent crude proxy) and port reports are for demonstration. Live broker quotes, real AIS tracks, and live ERP data are not connected.
+
+---
+
+## 🌐 Production Deployment
+
+Ready to host CARGO-PILOT online? Follow the complete step-by-step guide in [**`DEPLOYMENT.md`**](./DEPLOYMENT.md):
+* **Frontend**: Deploy to **Vercel** with automatic SPA rewrites and environment-based backend targeting.
+* **Backend**: Deploy to **Render** using pre-configured `render.yaml` or direct Web Service setup.
 
 ---
 

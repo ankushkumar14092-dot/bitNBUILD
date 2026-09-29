@@ -1,0 +1,14 @@
+{
+  "status": "observed_snapshot",
+  "is_stale": false,
+  "port": "Paradip",
+  "source": "Paradip Port Authority daily traffic report",
+  "source_url": "https://www.paradipport.gov.in/uploads/2026/09/dtr2809.pdf",
+  "report_label": "1 Daily Traffic Report for 28/09/26 (67.68 KB)",
+  "as_of": "2026-09-28T06:00:00",
+  "dry_bulk_vessels_waiting_at_anchorage": 5,
+  "cargo_types_observed": [
+    "TH.COAL"
+  ],
+  "interpretation": "Observed queue count; not AIS tracks, waiting-time prediction, or demurrage risk."
+}
